@@ -1,0 +1,30 @@
+{
+  "name": "hosts-parser",
+  "version": "0.1.0",
+  "description": "hosts file parser",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imyelo/hosts-parser.git"
+  },
+  "keywords": [
+    "hosts",
+    "parser"
+  ],
+  "author": "yelo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imyelo/hosts-parser/issues"
+  },
+  "homepage": "https://github.com/imyelo/hosts-parser",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
