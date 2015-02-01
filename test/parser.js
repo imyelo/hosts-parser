@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var expect = require('chai').expect;
 
-var Hosts = require('..');
+var Hosts = require('..').Hosts;
 
 function asset (filename) {
   return fs.readFileSync(path.join(__dirname, filename), 'utf8');

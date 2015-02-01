@@ -50,4 +50,4 @@ Hosts.prototype.parse = function (hosts) {
   return self;
 };
 
-module.exports = Hosts;
+exports.Hosts = Hosts;
