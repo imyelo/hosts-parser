@@ -33,7 +33,7 @@ var hosts = new Hosts(file);
 ### Hosts.prototype.resolve(hostname)
 ```
 hosts.resolve(hostname);
-// return the ip
+// return the ip or undefined
 ```
 
 ### Hosts.prototype.toJSON()
