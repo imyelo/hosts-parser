@@ -1,5 +1,28 @@
-module.exports = function parseHosts(hosts) {
-  var parsed = [];
+var _ = require('lodash');
+
+var Hosts = function (hosts) {
+  if (!(this instanceof Hosts)) {
+    return new Hosts(hosts);
+  }
+  this._origin = [];
+  return this.parse(hosts);
+};
+
+Hosts.prototype.toJSON = function () {
+  return this._origin;
+};
+
+Hosts.prototype.resolve = function (hostname) {
+  var matching = _.findLast(this._origin, function (rule) {
+    return rule.hostname === hostname;
+  });
+  if (matching && matching.ip) {
+    return matching.ip;
+  }
+};
+
+Hosts.prototype.parse = function (hosts) {
+  var self = this;
   hosts = (hosts || '').split('\n');
   hosts.forEach(function (line) {
     var hashIndex, matched, ip, hostnames;
@@ -18,11 +41,13 @@ module.exports = function parseHosts(hosts) {
     hostnames = matched.slice(1);
 
     hostnames.forEach(function (hostname) {
-      parsed.push({
+      self._origin.push({
         ip: ip,
         hostname: hostname
       });
     });
   });
-  return parsed;
-}
+  return self;
+};
+
+module.exports = Hosts;

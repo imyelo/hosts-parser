@@ -6,8 +6,9 @@ hosts file parser
 ## Usage
 ```javascript
 var fs = require('fs');
-var parser = require('hosts-parser');
-console.log(parser(fs.readFileSync('/etc/hosts', 'utf8')));
+var Hosts = require('hosts-parser');
+var hosts = new Hosts(fs.readFileSync('/etc/hosts', 'utf8'));
+console.log(hosts.toJSON());
 /**
 [
     {
@@ -16,9 +17,32 @@ console.log(parser(fs.readFileSync('/etc/hosts', 'utf8')));
     }
 ]
 **/
+console.log(hosts.resolve('localhost'));
+// 127.0.0.1
 ```
 
-## What is Hosts file
+## API
+### Hosts(hosts) and Hosts.prototype.parse(hosts)
+```
+var file = fs.readFileSync('/etc/hosts')
+var hosts = new Hosts(file);
+// or (new Hosts()).parse(file);
+// return a parsed Hosts object
+```
+
+### Hosts.prototype.resolve(hostname)
+```
+hosts.resolve(hostname);
+// return the ip
+```
+
+### Hosts.prototype.toJSON()
+```
+hosts.toJSON();
+return a json formatted object
+```
+
+## What is the Hosts file
 [hosts (file)](http://en.wikipedia.org/wiki/Hosts_%28file%29)
 
 ## License
