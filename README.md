@@ -39,7 +39,7 @@ hosts.resolve(hostname);
 ### Hosts.prototype.toJSON()
 ```
 hosts.toJSON();
-return a json formatted object
+// return a json formatted object
 ```
 
 ## What is the Hosts file
