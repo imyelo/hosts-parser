@@ -6,7 +6,7 @@ hosts file parser
 ## Usage
 ```javascript
 var fs = require('fs');
-var Hosts = require('hosts-parser');
+var Hosts = require('hosts-parser').Hosts;
 var hosts = new Hosts(fs.readFileSync('/etc/hosts', 'utf8'));
 console.log(hosts.toJSON());
 /**
@@ -24,7 +24,7 @@ console.log(hosts.resolve('localhost'));
 ## API
 ### Hosts(hosts) and Hosts.prototype.parse(hosts)
 ```
-var file = fs.readFileSync('/etc/hosts')
+var file = fs.readFileSync('/etc/hosts', 'utf-8');
 var hosts = new Hosts(file);
 // or (new Hosts()).parse(file);
 // return a parsed Hosts object
