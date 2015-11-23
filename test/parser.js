@@ -124,8 +124,8 @@ describe('parser', function () {
     });
   });
   describe('reverse', function () {
-    describe('repetition hostname', function () {
-      it('should be the last one', function () {
+    describe('find hostname', function () {
+      it('should be found', function () {
         var hosts = '\
           192.168.1.1 www.example1.com \n\
           192.168.1.2 www.example2.com\
@@ -143,6 +143,18 @@ describe('parser', function () {
           .to.be.an.undefined;
       });
     });
+    describe('find async',function(){
+      it('should fire the callback',function(done){
+        var hosts = '\
+          192.168.1.1 www.example1.com \n\
+          192.168.1.2 www.example2.com\
+          ';
+        expect((new Hosts(hosts)).reverse('192.168.1.2',function(err,result){
+          expect(result).to.equal('www.example2.com')
+          done()
+        }))
+      });
+    })
   });
   describe('file', function () {
     describe('example hosts file', function () {
