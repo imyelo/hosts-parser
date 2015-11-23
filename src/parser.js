@@ -21,12 +21,20 @@ Hosts.prototype.resolve = function (hostname) {
   }
 };
 
-Hosts.prototype.reverse = function (ip) {
+Hosts.prototype.reverse = function (ip, callback) {
   var matching = _.findLast(this._origin, function (rule) {
     return rule.ip === ip;
   });
   if (matching && matching.hostname) {
-    return matching.hostname;
+    if (typeof callback === 'function') { 
+      callback(null, matching.hostname);
+    } else {
+      return matching.hostname;
+    }
+  } else {
+    if (typeof callback === 'function') {
+      callback(new Error('Not found'));
+    } 
   }
 };
 
