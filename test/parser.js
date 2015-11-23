@@ -123,6 +123,27 @@ describe('parser', function () {
       });
     });
   });
+  describe('reverse', function () {
+    describe('repetition hostname', function () {
+      it('should be the last one', function () {
+        var hosts = '\
+          192.168.1.1 www.example1.com \n\
+          192.168.1.2 www.example2.com\
+          ';
+        expect((new Hosts(hosts)).reverse('192.168.1.2'))
+          .to.be.equal('www.example2.com');
+      });
+    });
+    describe('non-existing ip', function () {
+      it('should return an undefined', function () {
+        var hosts = '\
+          127.0.0.1 www.example.com\
+          ';
+        expect((new Hosts(hosts)).reverse('192.168.1.1'))
+          .to.be.an.undefined;
+      });
+    });
+  });
   describe('file', function () {
     describe('example hosts file', function () {
       it('should be ok', function () {

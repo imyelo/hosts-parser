@@ -21,6 +21,16 @@ Hosts.prototype.resolve = function (hostname) {
   }
 };
 
+Hosts.prototype.reverse = function (ip) {
+  var matching = _.findLast(this._origin, function (rule) {
+    return rule.ip === ip;
+  });
+  if (matching && matching.hostname) {
+    return matching.hostname;
+  }
+};
+
+
 Hosts.prototype.parse = function (hosts) {
   var self = this;
   hosts = (hosts || '').split('\n');
