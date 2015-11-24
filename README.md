@@ -23,7 +23,7 @@ console.log(hosts.resolve('localhost'));
 
 ## API
 ### Hosts(hosts) and Hosts.prototype.parse(hosts)
-```
+```javascript
 var file = fs.readFileSync('/etc/hosts', 'utf-8');
 var hosts = new Hosts(file);
 // or (new Hosts()).parse(file);
@@ -31,13 +31,26 @@ var hosts = new Hosts(file);
 ```
 
 ### Hosts.prototype.resolve(hostname)
-```
+```javascript
 hosts.resolve(hostname);
 // return the ip or undefined
 ```
 
-### Hosts.prototype.toJSON()
+### Hosts.prototype.reverse(ip)
+```javascript
+hosts.reverse(ip);
+// return the hostname or undefined
 ```
+
+### Hosts.prototype.reverse(ip, callback)
+```javascript
+hosts.reverse(ip, function (err, hostname) {
+  // pass the hostname or a NotFound Error
+});
+```
+
+### Hosts.prototype.toJSON()
+```javascript
 hosts.toJSON();
 // return a json formatted object
 ```
